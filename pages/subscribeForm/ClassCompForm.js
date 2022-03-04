@@ -4,37 +4,51 @@ import styles from "../../styles/subscribeForm.module.css";
 export default class ClassCompForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       name: "",
+      emptyName: 0,
       email: "",
-      mailId:'',
-      phoneNo: "",
-      day: "Sunday",
-        time: "5pm",
-      sudarshanKriya:''
+      emptyEmail: 0,
+      isValidEmail: true,
+      phoneNo: null,
+      emptyNumber: 0,
+      day: 'monday',
+      time: '5pm',
+      isSudarshanKriya:''
+      
+      
     };
-    }
-  
+  }
+
+
   handleName = (e) => {
     console.log(e.target.value);
 
     this.setState({
       name: e.target.value,
+      emptyName: 1 
     });
   };
   handleEmail = (e) => {
     console.log(e.target.value);
 
     this.setState({
-      email:e.target.value,
+      email: e.target.value,
     });
+    if (/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/.test(e.target.value)) {
+      this.setState({ isValidEmail: true });
+
+      console.log("isEmptyEmail in inbjh", this.state.email);
+    } else {
+      this.setState({ isValidEmail: false });
+    }
   };
   handlePhoneNo = (e) => {
     console.log(e.target.value);
 
     this.setState({
       phoneNo: e.target.value,
+      emptyNumber: 1 
     });
   };
   handleDay = (e) => {
@@ -52,16 +66,46 @@ export default class ClassCompForm extends Component {
   };
   handleSubmitForm = (e) => {
     alert(
-      `${this.state.name}   ${this.state.email}  ${this.state.phoneNo}  ${this.state.day}  ${this.state.time} ${this.state.sudarshanKriya}`
+      `${this.state.name}   ${this.state.email}  ${this.state.phoneNo}  ${this.state.day}  ${this.state.time} ${this.state.isSudarshanKriya}`
     );
+
+    this.setState({ isValidName: false, isValidEmail: false });
+    if (this.state.name == "") {
+      this.setState({ emptyName: 1 });
+    } else {
+      this.setState({ emptyName: 0 });
+    }
+    if (this.state.name == "") {
+      this.setState({ emptyNumber: 1 });
+    } else {
+      this.setState({ emptyNumber: 0 });
+    }
+    if (this.state.email == "") {
+      this.setState({ emptyEmail: 1 });
+    } else {
+      this.setState({ emptyEmail: 0 });
+    }
+    if (
+      this.state.name !== "" &&
+      this.state.email !== "" &&
+      this.state.isValidEmail == true
+    ) {
+      this.setState({ name: "", email: "", isValidEmail: true });
+      // this.handleSubmit(this.state.inputEmail)
+      // swal({
+      //   title: "Good job!",
+      //   text: "You submitted the form!",
+      //   icon: "success",
+      //   button: "Aww yiss!",
+      // });
+    }
 
     e.preventDefault();
   };
 
-  validateForm = () => {};
 
   render() {
-    const { name, email, phoneNo, day, time ,mailId} = this.state;
+    const { name, email, phoneNo, day, time, isSudarshanKriya,emptyName, emptyEmail, isValidEmail, emptyNumber  } = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmitForm} className={styles.form}>
@@ -69,6 +113,11 @@ export default class ClassCompForm extends Component {
             Join 1000 people who took the free introduction in the last week
           </div>
           <div className={styles.inputField}>
+          {name == "" && emptyName == 1 ? (
+              <p className={styles.errorMessage}>Please fill out this field.</p>
+            ) : (
+              ""
+            )}
             <input
               type="text"
               placeholder="Name"
@@ -76,30 +125,45 @@ export default class ClassCompForm extends Component {
               value={name}
               onChange={this.handleName}
               className={styles.inputBox}
-              required
+              // required
             ></input>
+            
           </div>
           <div className={styles.inputField}>
-          <input
+          {email == "" && emptyEmail ? (
+              <p className={styles.errorMessage}>Please fill out this field.</p>
+            ) : isValidEmail == false ? (
+              <p className={styles.errorMessage}>Please enter valid email.</p>
+            ) : (
+              ""
+            )}
+            <input
               type="email"
               placeholder="Email"
               name="email"
               value={email}
               onChange={this.handleEmail}
-              required
+              // required
               className={styles.inputBox}
             ></input>
+            
           </div>
           <div className={styles.inputField}>
+          {phoneNo == null && emptyNumber == 1 ? (
+              <p className={styles.errorMessage}> Please fill out this field.</p>
+            ) : (
+              ""
+            )}
             <input
               type="number"
               placeholder="Phone Number"
               name="number"
-              value={phoneNo}
+              value={this.state.inputNumber}
               onChange={this.handlePhoneNo}
               className={styles.inputBox}
-              required
+              // required
             />
+            
           </div>
           <div className={styles.inputField}>
             <lable>Select day</lable>
@@ -157,18 +221,27 @@ export default class ClassCompForm extends Component {
             <lable>Have you learnt Sudarshan Kriya *</lable>
             <div className={styles.radioBtnContainer}>
               <div>
-                <input type="radio" id="yes" name="sudarshanKriaya" onChange={(e) => {
-                    this.setState({ sudarshanKriya: "yes" })
-                    console.log(this.state.sudarshanKriya);
-                }} />
+                <input
+                  type="radio"
+                  id="yes"
+                  name="sudarshanKriaya"
+                  onChange={(e) => {
+                    this.setState({ isSudarshanKriya: "yes" });
+                    console.log(isSudarshanKriya);
+                  }}
+                />
                 <lable htmlFor="yes">yes</lable>
               </div>
               <div>
-                <input type="radio" id="no" name="sudarshanKriaya" onChange={(e) => {
-                    this.setState({ sudarshanKriya: "no" })
-                    console.log(this.state.sudarshanKriya);
-
-                }} />
+                <input
+                  type="radio"
+                  id="no"
+                  name="sudarshanKriaya"
+                  onChange={(e) => {
+                    this.setState({ isSudarshanKriya: "no" });
+                    console.log(isSudarshanKriya);
+                  }}
+                />
                 <lable htmlFor="no">no</lable>
               </div>
             </div>
@@ -176,7 +249,7 @@ export default class ClassCompForm extends Component {
           <button
             type="submit"
             className={styles.subButton}
-            onClick={this.validateForm}
+            onClick={this.handleSubmitForm}
           >
             Submit
           </button>
