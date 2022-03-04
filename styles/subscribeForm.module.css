@@ -1,0 +1,41 @@
+.form{
+  /* border: 1px solid black; */
+  width: 375px;
+  /* height:auto; */
+  padding:20px 25px;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(129, 124, 124, 0.2); 
+  backdrop-filter: blur(14px);
+  background-color: rgba(255, 255, 255, 0.2);
+
+    
+}
+.formTitle{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+}
+.inputField{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    margin-top:10px;
+    width:100%;
+}
+.inputBox{
+    height:36px !important ;
+    width:100%;
+    color: black;
+
+}
+.radioBtnContainer{
+    display: flex;
+    flex-direction: row;
+}
+.subButton {
+    height: 38px;
+    width: 150px;
+    text-align: center;
+    margin:10px 25% 5px ;
+    
+}
