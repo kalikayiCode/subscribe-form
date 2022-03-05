@@ -84,11 +84,11 @@ export default function FunctionCompForm() {
             <div className={styles.radioBtnContainer}>
               <div >
                 <input type="radio" id="yes" name="sudarshanKriaya" />
-                <lable for="yes">yes</lable>
+                <lable >yes</lable>
               </div>
               <div>
                 <input type="radio" id="yes" name="sudarshanKriaya" />
-                <lable for="yes">no</lable>
+                <lable >no</lable>
               </div>
             </div>
           </div>

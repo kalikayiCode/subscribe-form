@@ -12,21 +12,18 @@ export default class ClassCompForm extends Component {
       isValidEmail: true,
       phoneNo: null,
       emptyNumber: 0,
-      day: 'monday',
-      time: '5pm',
-      isSudarshanKriya:''
-      
-      
+      day: "monday",
+      time: "5pm",
+      isSudarshanKriya: "",
     };
   }
-
 
   handleName = (e) => {
     console.log(e.target.value);
 
     this.setState({
       name: e.target.value,
-      emptyName: 1 
+      emptyName: 1,
     });
   };
   handleEmail = (e) => {
@@ -48,7 +45,7 @@ export default class ClassCompForm extends Component {
 
     this.setState({
       phoneNo: e.target.value,
-      emptyNumber: 1 
+      emptyNumber: 1,
     });
   };
   handleDay = (e) => {
@@ -90,8 +87,8 @@ export default class ClassCompForm extends Component {
       this.state.email !== "" &&
       this.state.isValidEmail == true
     ) {
-      this.setState({ name: "", email: "",phoneNo:"", isValidEmail: true });
-      this.handleSubmit(this.state.email)
+      this.setState({ name: "", email: "", phoneNo: "", isValidEmail: true });
+      this.handleSubmit(this.state.email);
       // swal({
       //   title: "Good job!",
       //   text: "You submitted the form!",
@@ -103,9 +100,19 @@ export default class ClassCompForm extends Component {
     e.preventDefault();
   };
 
-
   render() {
-    const { name, email, phoneNo, day, time, isSudarshanKriya,emptyName, emptyEmail, isValidEmail, emptyNumber  } = this.state;
+    const {
+      name,
+      email,
+      phoneNo,
+      day,
+      time,
+      isSudarshanKriya,
+      emptyName,
+      emptyEmail,
+      isValidEmail,
+      emptyNumber,
+    } = this.state;
     return (
       <div>
         <form className={styles.form}>
@@ -113,7 +120,7 @@ export default class ClassCompForm extends Component {
             Join 1000 people who took the free introduction in the last week
           </div>
           <div className={styles.inputField}>
-          {name == "" && emptyName == 1 ? (
+            {name == "" && emptyName == 1 ? (
               <p className={styles.errorMessage}>Please fill out this field.</p>
             ) : (
               ""
@@ -127,10 +134,9 @@ export default class ClassCompForm extends Component {
               className={styles.inputBox}
               // required
             ></input>
-            
           </div>
           <div className={styles.inputField}>
-          {email == "" && emptyEmail ? (
+            {email == "" && emptyEmail ? (
               <p className={styles.errorMessage}>Please fill out this field.</p>
             ) : isValidEmail == false ? (
               <p className={styles.errorMessage}>Please enter valid email.</p>
@@ -146,11 +152,13 @@ export default class ClassCompForm extends Component {
               // required
               className={styles.inputBox}
             ></input>
-            
           </div>
           <div className={styles.inputField}>
-          {phoneNo == null && emptyNumber == 1 ? (
-              <p className={styles.errorMessage}> Please fill out this field.</p>
+            {phoneNo == null && emptyNumber == 1 ? (
+              <p className={styles.errorMessage}>
+                {" "}
+                Please fill out this field.
+              </p>
             ) : (
               ""
             )}
@@ -163,7 +171,6 @@ export default class ClassCompForm extends Component {
               className={styles.inputBox}
               // required
             />
-            
           </div>
           <div className={styles.inputField}>
             <lable>Select day</lable>
@@ -230,7 +237,7 @@ export default class ClassCompForm extends Component {
                     console.log(isSudarshanKriya);
                   }}
                 />
-                <lable >yes</lable>
+                <lable>yes</lable>
               </div>
               <div>
                 <input
@@ -242,7 +249,7 @@ export default class ClassCompForm extends Component {
                     console.log(isSudarshanKriya);
                   }}
                 />
-                <lable >no</lable>
+                <lable>no</lable>
               </div>
             </div>
           </div>
