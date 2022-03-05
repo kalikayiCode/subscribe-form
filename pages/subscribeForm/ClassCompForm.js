@@ -15,12 +15,13 @@ export default class ClassCompForm extends Component {
       day: "monday",
       time: "5pm",
       isSudarshanKriya: "",
+
     };
   }
+  
 
   handleName = (e) => {
     console.log(e.target.value);
-
     this.setState({
       name: e.target.value,
       emptyName: 1,
@@ -88,7 +89,7 @@ export default class ClassCompForm extends Component {
       this.state.isValidEmail == true
     ) {
       this.setState({ name: "", email: "", phoneNo: "", isValidEmail: true });
-      this.handleSubmit(this.state.email);
+      // this.handleSubmit(this.state.email);
       // swal({
       //   title: "Good job!",
       //   text: "You submitted the form!",
@@ -114,7 +115,9 @@ export default class ClassCompForm extends Component {
       emptyNumber,
     } = this.state;
     return (
+      
       <div>
+      
         <form className={styles.form}>
           <div className={styles.formTitle}>
             Join 1000 people who took the free introduction in the last week
@@ -254,9 +257,11 @@ export default class ClassCompForm extends Component {
             </div>
           </div>
           <button
-            // type="submit"
+            disabled = { name =="" ||
+              email =="" ||
+              phoneNo ==null }
             className={styles.subButton}
-            onClick={this.handleSubmitForm}
+            onClick={this.handleSubmitForm} 
           >
             Submit
           </button>
