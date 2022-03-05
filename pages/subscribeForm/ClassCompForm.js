@@ -230,7 +230,7 @@ export default class ClassCompForm extends Component {
                     console.log(isSudarshanKriya);
                   }}
                 />
-                <lable htmlFor="yes">yes</lable>
+                <lable >yes</lable>
               </div>
               <div>
                 <input
@@ -242,7 +242,7 @@ export default class ClassCompForm extends Component {
                     console.log(isSudarshanKriya);
                   }}
                 />
-                <lable htmlFor="no">no</lable>
+                <lable >no</lable>
               </div>
             </div>
           </div>
