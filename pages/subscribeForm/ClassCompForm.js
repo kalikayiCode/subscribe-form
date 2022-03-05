@@ -75,7 +75,7 @@ export default class ClassCompForm extends Component {
     } else {
       this.setState({ emptyName: 0 });
     }
-    if (this.state.name == "") {
+    if (this.state.phoneNo == null) {
       this.setState({ emptyNumber: 1 });
     } else {
       this.setState({ emptyNumber: 0 });
@@ -90,8 +90,8 @@ export default class ClassCompForm extends Component {
       this.state.email !== "" &&
       this.state.isValidEmail == true
     ) {
-      this.setState({ name: "", email: "", isValidEmail: true });
-      // this.handleSubmit(this.state.inputEmail)
+      this.setState({ name: "", email: "",phoneNo:"", isValidEmail: true });
+      this.handleSubmit(this.state.email)
       // swal({
       //   title: "Good job!",
       //   text: "You submitted the form!",
@@ -108,7 +108,7 @@ export default class ClassCompForm extends Component {
     const { name, email, phoneNo, day, time, isSudarshanKriya,emptyName, emptyEmail, isValidEmail, emptyNumber  } = this.state;
     return (
       <div>
-        <form onSubmit={this.handleSubmitForm} className={styles.form}>
+        <form className={styles.form}>
           <div className={styles.formTitle}>
             Join 1000 people who took the free introduction in the last week
           </div>
@@ -158,7 +158,7 @@ export default class ClassCompForm extends Component {
               type="number"
               placeholder="Phone Number"
               name="number"
-              value={this.state.inputNumber}
+              value={phoneNo}
               onChange={this.handlePhoneNo}
               className={styles.inputBox}
               // required
@@ -247,7 +247,7 @@ export default class ClassCompForm extends Component {
             </div>
           </div>
           <button
-            type="submit"
+            // type="submit"
             className={styles.subButton}
             onClick={this.handleSubmitForm}
           >
